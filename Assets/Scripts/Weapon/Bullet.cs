@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         if (hasHit) return;
 
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * (speed * Time.deltaTime);
 
         lifetime += Time.deltaTime;
         if (lifetime >= maxLifetime)
