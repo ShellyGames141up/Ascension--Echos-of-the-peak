@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     public int damage = 25;
     public LayerMask collisionLayers;
     public GameObject impactEffect;
-
     private Vector3 direction;
     private float lifetime;
     private bool hasHit;
