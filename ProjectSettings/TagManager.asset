@@ -8,6 +8,8 @@ TagManager:
   - targetTag
   - Bullet
   - Target
+  - EnemyBullet
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Enemy
   - Bullet
   - Target
-  - 
+  - EnemyBullet
   - 
   - 
   - 
