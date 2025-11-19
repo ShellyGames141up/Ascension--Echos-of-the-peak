@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clash Royale Goblin Knife
       objectReference: {fileID: 0}
+    - target: {fileID: 3790545541202768900, guid: 5a69ff3712eb2bf459266f9b162a39e6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fcb5e17711665a45899470f31729ca9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -157,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ultra-realistic-goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 8899280939931799276, guid: d043acc85bfe84c4abfb7f7acc2ed68f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2cd1cd0f9dcd7ba4c87ff8b219aebdbc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: d043acc85bfe84c4abfb7f7acc2ed68f, type: 3}
