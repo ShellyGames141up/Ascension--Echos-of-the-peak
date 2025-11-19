@@ -24,23 +24,20 @@ public class DissapearingPlatforms : MonoBehaviour
     
     void Start()
     {
-        // Get components
         objectCollider = GetComponent<Collider>();
         objectRenderer = GetComponent<Renderer>();
         audioSource = GetComponent<AudioSource>();
         
-        // Store original transform for reset
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalScale = transform.localScale;
         
-        // Add AudioSource if needed
+     
         if (playSound && audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = 1f;
         }
-        
         Debug.Log($"Disappearing platform initialized: {gameObject.name}");
     }
     
@@ -65,39 +62,35 @@ public class DissapearingPlatforms : MonoBehaviour
     private IEnumerator Disappear()
     {
         isActive = false;
-       
-        // Wait for disappear delay
+        
         if (disappearDelay > 0)
         {
             yield return new WaitForSeconds(disappearDelay);
         }
         
-        // Play particle effect
+        
         if (playParticleEffect && disappearParticles != null)
         {
             disappearParticles.Play();
             yield return new WaitForSeconds(0.1f);
         }
-        
-        // Play sound
+     
         if (playSound && disappearSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(disappearSound);
             yield return new WaitForSeconds(disappearSound.length);
         }
         
-        // Handle disappearance
         if (destroyObject)
         {
             Destroy(gameObject);
         }
         else
         {
-            // Disable components instead of destroying
+         
             if (objectCollider != null) objectCollider.enabled = false;
             if (objectRenderer != null) objectRenderer.enabled = false;
             
-            // Disable all children
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
@@ -106,7 +99,6 @@ public class DissapearingPlatforms : MonoBehaviour
         
         Debug.Log($"{gameObject.name} has disappeared!");
     }
-    
     public void ResetPlatform()
     {
         if (destroyObject && !isActive)
@@ -114,20 +106,15 @@ public class DissapearingPlatforms : MonoBehaviour
             Debug.LogWarning($"Cannot reset {gameObject.name} - object is set to destroy and has been disabled.");
             return;
         }
-        
         StopAllCoroutines();
         isActive = true;
-        
-        // Reset transform
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         transform.localScale = originalScale;
         
-        // Re-enable components
         if (objectCollider != null) objectCollider.enabled = true;
         if (objectRenderer != null) objectRenderer.enabled = true;
         
-        // Re-enable children
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
@@ -135,7 +122,6 @@ public class DissapearingPlatforms : MonoBehaviour
         
         Debug.Log($"{gameObject.name} has been reset!");
     }
-    
     public void TriggerDisappearance()
     {
         if (isActive)
@@ -143,7 +129,6 @@ public class DissapearingPlatforms : MonoBehaviour
             StartCoroutine(Disappear());
         }
     }
-    
     void OnDrawGizmos()
     {
         Gizmos.color = isActive ? Color.yellow : Color.red;

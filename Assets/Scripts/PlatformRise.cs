@@ -28,7 +28,7 @@ public class PlatformRise : MonoBehaviour
         startPosition = transform.position;
         targetPosition = startPosition + Vector3.up * moveDistance;
         
-        // Validate collider
+       
         Collider collider = GetComponent<Collider>();
         if (collider == null)
         {
@@ -136,23 +136,18 @@ public class PlatformRise : MonoBehaviour
         {
             Vector3 previousPosition = transform.position;
             
-            // Move platform
+          
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             
-            // Move player with platform
             if (playerOnPlatform != null && shouldMovePlayer)
             {
                 Vector3 platformMovement = transform.position - previousPosition;
                 playerOnPlatform.position += platformMovement;
             }
-            
             yield return null;
         }
-        
         transform.position = targetPosition;
         isMoving = false;
-        
-        // Allow player to leave naturally
         StartCoroutine(AllowPlayerToLeave());
     }
     
@@ -183,11 +178,7 @@ public class PlatformRise : MonoBehaviour
     public void ResetPlatform()
     {
         StopAllCoroutines();
-        
-        // Reset platform position
         transform.position = startPosition;
-        
-        // Reset state variables
         standTimer = 0f;
         playerIsStanding = false;
         hasActivated = false;
@@ -200,7 +191,6 @@ public class PlatformRise : MonoBehaviour
     
     void Update()
     {
-        // Visual feedback
         if (playerIsStanding)
         {
             Debug.DrawRay(transform.position, Vector3.up * 3, Color.green);
@@ -210,13 +200,11 @@ public class PlatformRise : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.up * 3, Color.blue);
         }
         
-        // Draw movement path
         Debug.DrawLine(startPosition, targetPosition, Color.yellow);
     }
     
     void OnDrawGizmos()
     {
-        // Visualize trigger area
         Collider collider = GetComponent<Collider>();
         if (collider != null)
         {
@@ -233,7 +221,6 @@ public class PlatformRise : MonoBehaviour
             }
         }
         
-        // Draw movement target
         Gizmos.color = Color.red;
         if (Application.isPlaying)
         {

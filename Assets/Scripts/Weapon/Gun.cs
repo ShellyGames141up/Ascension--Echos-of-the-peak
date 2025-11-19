@@ -43,7 +43,6 @@ public class Gun : MonoBehaviour
         originalPosition = transform.localPosition;
         originalRotation = transform.localRotation;
         
-        // Setup audio source
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -59,18 +58,15 @@ public class Gun : MonoBehaviour
         HandleRecoilRecovery();
         HandleInput();
     }
-    
     private void HandleInput()
     {
         if (isReloading) return;
         
-        // Shoot on left mouse button
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             TryShoot();
         }
         
-        // Reload on R key
         if (Input.GetKeyDown(KeyCode.R) && currentAmmo < maxAmmo)
         {
             StartReload();
@@ -97,13 +93,12 @@ public class Gun : MonoBehaviour
         nextFireTime = Time.time + fireRate;
         currentAmmo--;
         
-        // Apply visual recoil
         ApplyRecoil();
         
-        // Play shoot sound
+        
         PlayShootSound();
         
-        // Spawn bullets
+        
         for (int i = 0; i < bulletsPerShot; i++)
         {
             Vector3 shootDirection = CalculateShootDirection();
@@ -145,7 +140,6 @@ public class Gun : MonoBehaviour
     {
         Vector3 direction = playerCamera.transform.forward;
         
-        // Apply random spread
         if (spreadAngle > 0)
         {
             float spreadX = Random.Range(-spreadAngle, spreadAngle);
@@ -155,7 +149,6 @@ public class Gun : MonoBehaviour
         
         return direction;
     }
-    
     private void SpawnBullet(Vector3 direction)
     {
         if (bulletPrefab == null || barrelEnd == null) 
@@ -163,7 +156,6 @@ public class Gun : MonoBehaviour
             Debug.LogWarning("Bullet prefab or barrel end not assigned!");
             return;
         }
-
         GameObject bullet = Instantiate(bulletPrefab, barrelEnd.position, Quaternion.LookRotation(direction));
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         
@@ -172,20 +164,17 @@ public class Gun : MonoBehaviour
             bulletScript.Initialize(direction);
         }
     }
-    
     private void ApplyRecoil()
     {
-        // Apply rotation recoil
+       
         Vector3 recoilRot = new Vector3(-recoilRotation, Random.Range(-recoilRotation/2, recoilRotation/2), 0);
         transform.localRotation = Quaternion.Euler(recoilRot) * originalRotation;
-        
-        // Apply position kickback
         transform.localPosition = originalPosition + (-transform.forward * recoilKickback);
     }
 
     private void HandleRecoilRecovery()
     {
-        // Smoothly return to original position and rotation
+        
         transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, recoilRecoverySpeed * Time.deltaTime);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, recoilRecoverySpeed * Time.deltaTime);
     }
