@@ -5819,6 +5819,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a049dca6b925ea148b4d951847ae38eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColourPillars
+--- !u!1 &204004504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204004506}
+  - component: {fileID: 204004505}
+  m_Layer: 3
+  m_Name: 'Respawn Point '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &204004505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204004504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca012e4c82e4bad4982968421e3bc7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnPoint
+  playerTag: Player
+--- !u!4 &204004506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204004504}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.91, y: 0.889, z: 0.71}
+  m_LocalScale: {x: 0.2483554, y: 0.2483554, z: 0.2483554}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &204573333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44646,15 +44691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  OnPlayerDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerRespawn:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1480138706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7081375033695983838, guid: 6ade219c46f95e84a9784a486687680e, type: 3}
@@ -57159,7 +57195,7 @@ MonoBehaviour:
   barrelEnd: {fileID: 237075527}
   bulletPrefab: {fileID: 5045206337154824288, guid: bbdf6b3060dacca4890a9abc036245f1, type: 3}
   playerCamera: {fileID: 1823688466}
-  fireRate: 0.15
+  fireRate: 0.2
   bulletsPerShot: 3
   spreadAngle: 1
   maxAmmo: 30
@@ -60168,6 +60204,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 157207114}
   - {fileID: 432432461}
+  - {fileID: 204004506}
   - {fileID: 2013410475}
   - {fileID: 1472459464}
   - {fileID: 1634999216}
