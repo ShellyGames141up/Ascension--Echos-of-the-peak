@@ -22,7 +22,7 @@ public class EnemyBullet : MonoBehaviour
             
             Destroy(gameObject);
         }
-        else if (other.CompareTag("Wall") || other.CompareTag("Ground"))
+        else if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
         }
